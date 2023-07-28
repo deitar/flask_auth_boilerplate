@@ -1,0 +1,86 @@
+{% extends "master.html" %}
+
+{% block title %} Register {% endblock %} 
+{% block header %}{% endblock %} 
+
+{% block content %}
+
+<style>
+
+    body{
+        display: flex!important;
+    }
+    
+    html,
+    body {
+        height: 100%;
+    }
+
+    .form-signin {
+        max-width: 330px;
+        padding: 1rem;
+    }
+
+    .form-signin .form-floating:focus-within {
+        z-index: 2;
+    }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    .form-messages li.error{
+        color: red;
+    }
+</style>
+
+
+<main class="form-signin w-100 m-auto">
+
+    <form action="" method="post">
+        <h1 class="h3 mb-3 fw-normal">Register</h1>
+
+        {% with errors = get_flashed_messages(category_filter=["error"]) %}
+        {% if errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                {% for msg in errors %}
+                <li>{{ msg }}</li>
+                {% endfor %}
+            </ul>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+          </div>
+        {% endif %}
+        {% endwith %}
+
+        <div class="form-floating">
+            <input type="text" name="name" value="{{name}}" class="border-bottom-0 form-control rounded-bottom-0" id="floatingInput" placeholder="john doe">
+            <label for="floatingInput">Name</label>
+        </div>        
+        <div class="form-floating">
+            <input type="email" name="email" value="{{email}}" class="form-control rounded-0" id="floatingInput" placeholder="name@example.com">
+            <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" name="password" class="border-bottom-0 form-control mb-0 rounded-0" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" name="confirmpassword" class="form-control" id="floatingConfirmPassword" placeholder="Confirm Password">
+            <label for="floatingConfirmPassword">Confirm Password</label>
+        </div>
+
+        <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+        <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
+    </form>
+</main>
+
+{% endblock %}
